@@ -1,0 +1,270 @@
+{
+  "box_status": {
+    "door_open": false,
+    "door_locked": true,
+    "mail_present": false,
+    "parcel_present": false,
+    "arduino_connected": false
+  },
+  "active_code": {
+    "code": "1825",
+    "expires_at": "2026-03-24 13:47:48",
+    "created_at": "2026-03-24 13:17:48"
+  },
+  "events_log": [
+    {
+      "time": "2026-03-24 13:17:48",
+      "description": "Code 1825 g\u00e9n\u00e9r\u00e9 (30min)",
+      "type": "code"
+    },
+    {
+      "time": "2026-03-24 13:17:22",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-24 12:22:17",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-24 12:18:34",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-24 12:01:39",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 17:22:14",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 17:21:05",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 17:20:32",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 17:20:07",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 17:19:24",
+      "description": "Code 5238 r\u00e9voqu\u00e9",
+      "type": "code"
+    },
+    {
+      "time": "2026-03-21 17:19:09",
+      "description": "Code 5238 g\u00e9n\u00e9r\u00e9 (30min)",
+      "type": "code"
+    },
+    {
+      "time": "2026-03-21 17:18:46",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 17:17:38",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 17:12:29",
+      "description": "Code 4829 r\u00e9voqu\u00e9",
+      "type": "code"
+    },
+    {
+      "time": "2026-03-21 17:12:18",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 17:07:24",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 17:07:05",
+      "description": "Code 4829 g\u00e9n\u00e9r\u00e9 (30min)",
+      "type": "code"
+    },
+    {
+      "time": "2026-03-21 17:06:25",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 17:06:17",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 16:54:56",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-21 16:54:54",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 19:07:49",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 18:30:27",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 18:20:17",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 18:20:04",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 18:19:37",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 18:09:56",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 18:09:56",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 18:09:56",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 18:09:56",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 18:07:45",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:54:19",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:52:03",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:45:03",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:44:53",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:39:17",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:27:47",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:25:42",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:23:42",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:18:33",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:14:46",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 17:08:15",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 16:51:22",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 16:35:33",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 16:32:22",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 16:31:23",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 16:31:23",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 16:31:23",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 16:31:23",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    },
+    {
+      "time": "2026-03-18 16:31:22",
+      "description": "Connexion au dashboard",
+      "type": "system"
+    }
+  ],
+  "email_config": {
+    "enabled": false,
+    "address": ""
+  }
+}

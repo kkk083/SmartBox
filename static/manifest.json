@@ -1,0 +1,24 @@
+{
+  "name": "SmartBox",
+  "short_name": "SmartBox",
+  "description": "Boîte aux lettres connectée & sécurisée",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E8729A",
+  "theme_color": "#E8729A",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/static/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

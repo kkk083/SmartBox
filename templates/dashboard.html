@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SmartBox — Dashboard</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#E8729A">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SmartBox">
+    <link rel="apple-touch-icon" href="/static/images/icon-192.png">
+</head>
+<body>
+
+<!-- ==================== SPLASH SCREEN ==================== -->
+<div class="splash-screen" id="splashScreen">
+    <div class="splash-content">
+        <div class="splash-logo">📬</div>
+        <h1 class="splash-title">Smart<span>Box</span></h1>
+        <div class="splash-loader">
+            <div class="splash-loader-bar"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== LOGIN ==================== -->
+<div class="login-page" id="loginPage" style="opacity:0; pointer-events:none;">
+    <div class="login-box">
+        <div class="login-logo">📬</div>
+        <h2>Smart<span>Box</span></h2>
+        <p class="login-subtitle">Connectez-vous pour accéder au dashboard</p>
+        
+        <div class="input-group">
+            <label>Nom d'utilisateur</label>
+            <input type="text" class="input-field" id="loginUser" placeholder="admin" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label>Mot de passe</label>
+            <input type="password" class="input-field" id="loginPass" placeholder="••••••" autocomplete="off">
+        </div>
+        
+        <div class="login-error" id="loginError"></div>
+        <button class="btn-login" onclick="doLogin()">Se connecter</button>
+        
+        <p class="login-hint">
+            Par défaut : <code>admin</code> / <code>1234</code><br>
+            (Modifiable dans config.py)
+        </p>
+    </div>
+</div>
+
+<!-- ==================== DASHBOARD ==================== -->
+<div class="app" id="dashboardApp" style="display: none;">
+
+    <!-- Header -->
+    <header class="header fade-in">
+        <div class="header-left">
+            <div class="logo">📬</div>
+            <div class="header-left-text">
+                <h1>Smart<span>Box</span></h1>
+                <div class="header-meta" id="lastActivityText">En attente d'activité...</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="connection-badge">
+                <div class="connection-dot" id="connDot"></div>
+                <span id="connText">Connexion...</span>
+            </div>
+            <button class="btn-logout" onclick="doLogout()">Déconnexion</button>
+        </div>
+    </header>
+
+    <!-- Status Cards -->
+    <div class="status-row fade-in">
+        <div class="status-card">
+            <div class="label">Serrure</div>
+            <div class="value">
+                <div class="status-icon locked" id="lockIcon">🔒</div>
+                <span id="lockText">Verrouillée</span>
+            </div>
+        </div>
+        <div class="status-card">
+            <div class="label">Compartiment colis</div>
+            <div class="value">
+                <div class="status-icon parcel-no" id="parcelIcon">📦</div>
+                <span id="parcelText">Vide</span>
+            </div>
+        </div>
+        <div class="status-card">
+            <div class="label">Courrier</div>
+            <div class="value">
+                <div class="status-icon mail-no" id="mailIcon">✉️</div>
+                <span id="mailText">Aucun</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="main-grid fade-in">
+        
+        <!-- Code Generator Panel -->
+        <div class="panel">
+            <div class="panel-title">🔑 Code d'accès temporaire</div>
+            
+            <div class="code-display">
+                <div id="codeDisplay" class="code-placeholder">• • • •</div>
+                <div id="codeTimer" class="code-timer"></div>
+                <div class="code-progress-wrap" id="codeProgressWrap" style="display:none;">
+                    <div class="code-progress-bar" id="codeProgressBar"></div>
+                </div>
+            </div>
+
+            <div class="duration-selector">
+                <button class="dur-btn" data-dur="30" onclick="selectDuration(30, this)">30 min</button>
+                <button class="dur-btn" data-dur="60" onclick="selectDuration(60, this)">1 heure</button>
+                <button class="dur-btn" data-dur="120" onclick="selectDuration(120, this)">2 heures</button>
+                <button class="dur-btn" data-dur="custom" onclick="selectDuration('custom', this)">⚙️ Perso</button>
+            </div>
+
+            <div class="custom-duration" id="customDurationRow">
+                <input type="number" id="customH" min="0" max="24" value="0" oninput="validateCustomDuration()">
+                <span class="unit-label">h</span>
+                <input type="number" id="customM" min="0" max="59" value="1" oninput="validateCustomDuration()">
+                <span class="unit-label">min</span>
+                <input type="number" id="customS" min="0" max="59" value="0" oninput="validateCustomDuration()">
+                <span class="unit-label">sec</span>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-primary" id="btnGenerate" onclick="generateCode()">🔑 Générer un code</button>
+                <button class="btn btn-danger" id="btnRevoke" onclick="revokeCode()" disabled>✕ Révoquer</button>
+            </div>
+            
+            <div class="copy-hint" id="copyHint">📋 Code copié ! Envoyez-le au livreur</div>
+
+            <!-- Email Section -->
+            <div class="email-section">
+                <div class="email-toggle">
+                    <span class="email-toggle-label">📧 Notifications email</span>
+                    <label class="switch">
+                        <input type="checkbox" id="emailToggle" onchange="toggleEmail()">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+                <div class="email-input-row" id="emailInputRow">
+                    <input type="email" id="emailAddress" placeholder="votre@email.com">
+                    <button class="btn-save-email" onclick="saveEmail()">Sauver</button>
+                </div>
+                <div class="email-status" id="emailStatus">✓ Email sauvegardé</div>
+            </div>
+        </div>
+
+        <!-- Events Panel -->
+        <div class="panel">
+            <div class="panel-title">📋 Historique des événements</div>
+            <div class="events-list" id="eventsList">
+                <div class="no-events">Aucun événement pour le moment</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How it works -->
+    <div class="how-it-works fade-in">
+        <div class="panel-title">💡 Comment ça marche</div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">🔑</div>
+                <div class="step-number">1</div>
+                <div class="step-text">Générez un code temporaire depuis ce dashboard</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">📱</div>
+                <div class="step-number">2</div>
+                <div class="step-text">Envoyez le code au livreur (SMS, mail...)</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">🔢</div>
+                <div class="step-number">3</div>
+                <div class="step-text">Le livreur tape le code sur le clavier de la boîte</div>
+            </div>
+            <div class="step">
+                <div class="step-icon">📦</div>
+                <div class="step-number">4</div>
+                <div class="step-text">Le colis est déposé, vous êtes notifié</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Bar — Notifications -->
+    <div class="bottom-bar" id="bottomBar">
+        <button class="btn-push-bottom" id="btnPush" onclick="subscribeToPush()">
+            <span class="push-icon">🔔</span>
+            <span class="push-label">Activer les notifications</span>
+        </button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <div class="modal-icon">⚠️</div>
+        <div class="modal-title">Un code est déjà actif</div>
+        <div class="modal-text">
+            Le code <span class="current-code" id="modalCurrentCode"></span> est encore valide.<br>
+            Générer un nouveau code <strong>annulera l'ancien</strong>.
+        </div>
+        <div class="modal-actions">
+            <button class="btn-secondary" onclick="closeModal()">Annuler</button>
+            <button class="btn btn-primary" onclick="confirmNewCode()">Remplacer le code</button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- JavaScript -->
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+<script>
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const splash = document.getElementById('splashScreen');
+        splash.style.opacity = '0';
+        splash.style.transform = 'scale(1.04)';
+        splash.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        
+        setTimeout(async () => {
+            splash.style.display = 'none';
+
+            // Vérifie si déjà connecté
+            try {
+                const res = await fetch('/api/status');
+                if (res.ok) {
+                    showDashboard();
+                    return;
+                }
+            } catch(e) {}
+
+            // Sinon montre le login
+            const login = document.getElementById('loginPage');
+            login.style.transition = 'opacity 0.5s ease';
+            login.style.opacity = '1';
+            login.style.pointerEvents = 'all';
+        }, 650);
+    }, 2200);
+});
+</script>
+
+</body>
+</html>
